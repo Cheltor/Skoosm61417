@@ -1,0 +1,32 @@
+<%= form_for(syllabus) do |f| %>
+  <% if syllabus.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(syllabus.errors.count, "error") %> prohibited this syllabus from being saved:</h2>
+
+      <ul>
+      <% syllabus.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :year %><br />
+    <%= f.collection_select :year_id, Year.all, :id, :year %>
+  </div>
+
+  <div class="field">
+    <%= f.label :semester %><br />
+    <%= f.collection_select :semester_id, Semester.all, :id, :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :course %><br />
+    <%= f.collection_select :course_id, Course.all, :id, :name_with_univ %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

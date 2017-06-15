@@ -1,0 +1,9 @@
+<%= div_for(comment) do %>
+	<p>
+	  <%= comment.content %>
+	  <%= comment.user.try(:email) %>
+		<% if comment.user == current_user -%>
+			<%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
+		<% end %>
+	</p>
+<% end %>

@@ -1,0 +1,19 @@
+<div>
+  <p>
+    <%= @syllabus.year.year %>
+  </p>
+  <p>
+    <%= @syllabus.semester.name %>
+  </p>
+  <p>
+    <%= @syllabus.course.name %>
+  </p>
+</div>
+<div>
+  <h2>Events</h2>
+  <%= render @syllabus.events %>
+  <h3>Add an event</h3>
+  <%= render "events/form" %>
+</div>
+<%= link_to "Back", root_path %>
+

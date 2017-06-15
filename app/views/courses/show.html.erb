@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @course.name %>
+</p>
+
+<% if @syllabuses.blank? %>
+  <h1>There are no Syllabi for this course yet.</h1>
+  <% else %>
+      
+    <h1>Listing Syllabuses</h1>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Year</th>
+          <th>Semester</th>
+          <th>Course</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+    
+      <tbody>
+        <% @syllabuses.each do |syllabus| %>
+          <tr>
+            <td><%= syllabus.year.year %></td>
+            <td><%= syllabus.semester.name %></td>
+            <td><%= syllabus.course.name %></td>
+            <td><%= link_to 'Show', syllabus %></td>
+            <td><%= link_to 'Edit', edit_syllabus_path(syllabus) %></td>
+            <td><%= link_to 'Destroy', syllabus, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+<% end %>
+
+<%= link_to 'Edit', edit_course_path(@course) %> |
+<%= link_to 'Back', courses_path %>
