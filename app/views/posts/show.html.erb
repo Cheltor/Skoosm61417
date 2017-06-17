@@ -22,7 +22,7 @@
 
 <div>
   <h2>Comments</h2>
-  <%= render @post.comments %>
+  <%= render :partial => @post.comments %>
   <h3>Add a comment</h3>
   <%= render "comments/form" %>
 </div>
