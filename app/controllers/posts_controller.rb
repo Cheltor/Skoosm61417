@@ -66,7 +66,7 @@ class PostsController < ApplicationController
 
   def upvote
     @post = Post.find(params[:id])
-    if current_user.voted_for? @post
+    if current_user.voted_up_on? @post
       redirect_to :back
     else
       @post.upvote_by current_user
@@ -77,7 +77,7 @@ class PostsController < ApplicationController
   
   def downvote
     @post = Post.find(params[:id])
-    if current_user.voted_for? @post
+    if current_user.voted_down_on? @post
       redirect_to :back
     else
       @post.downvote_by current_user
