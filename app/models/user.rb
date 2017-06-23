@@ -8,6 +8,8 @@ class User < ApplicationRecord
   belongs_to :university
   has_many :comments
   acts_as_voter
+  has_many :enrolls
+  has_many :courses, :through => :enrolls
   
   def increase_karma(count=1)
     update_attribute(:karma, karma + count)

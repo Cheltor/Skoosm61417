@@ -5,6 +5,11 @@
   <%= @course.name %>
 </p>
 
+<p>
+  <strong>Enroll</strong>
+  <td><%= button_to 'Enroll', enroll_course_path(@course), method: :post %></td>
+</p>
+
 <% if @syllabuses.blank? %>
   <h1>There are no Syllabi for this course yet.</h1>
   <% else %>

@@ -12,7 +12,11 @@ Rails.application.routes.draw do
   resources :subjects
   resources :universities
   devise_for :users
-  resources :courses
+  resources :courses do
+    member do
+      post 'enroll'
+    end
+  end  
   root 'posts#index'
   resources :posts do
     resources :comments

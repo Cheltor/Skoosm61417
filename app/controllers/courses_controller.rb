@@ -7,6 +7,24 @@ class CoursesController < ApplicationController
     @courses = Course.all
   end
 
+  # POST /enrolls
+  # POST /enrolls.json
+  def enroll
+    @course = Course.find(params[:id])
+    @enroll = @course.enrolls.create(params.permit(:course_id,:user_id))
+    @enroll.user_id = current_user.id
+    
+      respond_to do |format|
+        if @enroll.save
+          format.html { redirect_to @course, notice: 'Enroll was successfully created.' }
+          format.json { render json: @enroll, status: :created, location: @enroll }
+        else
+          format.html { redirect_to @course}
+          format.json { render json: @enroll.errors, status: :unprocessable_entity }
+        end
+      end
+  end
+
   # GET /courses/1
   # GET /courses/1.json
   def show
