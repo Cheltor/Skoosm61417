@@ -6,7 +6,7 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = Book.all
+    @books = Book.where.not(id: Flag.select(:book_id))
   end
 
   # GET /books/1
@@ -37,6 +37,24 @@ class BooksController < ApplicationController
         format.json { render json: @book.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # POST /flags
+  # POST /flags.json
+  def flag
+    @book = Book.find(params[:id])
+    @flag = @book.flags.create(params.permit(:book_id,:user_id))
+    @flag.user_id = current_user.id
+    
+      respond_to do |format|
+        if @flag.save
+          format.html { redirect_to books_url, notice: 'Flag was successfully created.' }
+          format.json { render json: @flag, status: :created, location: @flag }
+        else
+          format.html { redirect_to books_url}
+          format.json { render json: @flag.errors, status: :unprocessable_entity }
+        end
+      end
   end
 
   # PATCH/PUT /books/1

@@ -20,6 +20,11 @@
   <%= @post.content %>
 </p>
 
+<p>
+  <strong>Flag</strong>
+  <td><%= button_to 'Flag', flag_post_path(@post), method: :post %></td>
+</p>
+
 <div>
   <h2>Comments</h2>
   <%= render :partial => @post.comments %>

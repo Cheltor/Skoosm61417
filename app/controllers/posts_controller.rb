@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @search = Post.ransack(params[:q])
-    @posts = @search.result.includes(:comments)    
+    @posts = @search.result.includes(:comments).where.not(id: Flag.select(:post_id))
   end
 
   # GET /posts/1
@@ -94,6 +94,24 @@ class PostsController < ApplicationController
       @post.user.decrease_karma
       redirect_to :back
     end
+  end
+
+  # POST /flags
+  # POST /flags.json
+  def flag
+    @post = Post.find(params[:id])
+    @flag = @post.flags.create(params.permit(:post_id,:user_id))
+    @flag.user_id = current_user.id
+    
+      respond_to do |format|
+        if @flag.save
+          format.html { redirect_to posts_url, notice: 'Flag was successfully created.' }
+          format.json { render json: @flag, status: :created, location: @flag }
+        else
+          format.html { redirect_to posts_url}
+          format.json { render json: @flag.errors, status: :unprocessable_entity }
+        end
+      end
   end
 
   private

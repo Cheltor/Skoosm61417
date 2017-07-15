@@ -20,6 +20,10 @@
   <%= @book.price %>
 </p>
 
+<p>
+  <strong>Flag</strong>
+  <td><%= button_to 'Flag', flag_book_path(@book), method: :post %></td>
+</p>
 
 <%= link_to 'Edit', edit_book_path(@book) %> |
 <%= link_to 'Back', books_path %>
