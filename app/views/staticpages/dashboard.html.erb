@@ -1,0 +1,22 @@
+<h1>Listing Enrolls</h1>
+
+<h2>Email:</h2>
+<%= current_user.email %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Course</th>
+      <th>User</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @enrolls.each do |enroll| %>
+      <tr>
+        <td><%= enroll.course.try(:name) %></td>
+        <td><%= enroll.user.try(:email) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

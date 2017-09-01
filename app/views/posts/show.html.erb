@@ -27,7 +27,7 @@
 
 <div>
   <h2>Comments</h2>
-  <%= render :partial => @post.comments %>
+  <%= render :partial => @post.comments.where.not(id: Hide.select(:comment_id)) %>
   <h3>Add a comment</h3>
   <%= render "comments/form" %>
 </div>

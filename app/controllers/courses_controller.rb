@@ -25,10 +25,22 @@ class CoursesController < ApplicationController
       end
   end
 
+  # DELETE /enrolls/1
+  # DELETE /enrolls/1.json
+  def unenroll
+    @course = Course.find(params[:id])
+    @enroll.destroy
+    respond_to do |format|
+      format.html { redirect_to @course, notice: 'Enroll was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
   # GET /courses/1
   # GET /courses/1.json
   def show
     @syllabuses = Syllabus.all.where(course_id: @course.id)
+    @posts = Post.all.where(course_id: @course.id)
   end
 
   # GET /courses/new

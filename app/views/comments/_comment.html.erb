@@ -8,4 +8,5 @@
 	<% end %>
      <%= link_to like_post_comment_path(@post, comment), method: :put do %>upvote<% end %><%= comment.get_upvotes.size %>
      <%= link_to dislike_post_comment_path(@post, comment), method: :put do %>downvote<% end %><%= comment.get_downvotes.size %>
+     <%= button_to 'Hide', hide_post_comment_path(@post, comment), method: :post %>
 </p>

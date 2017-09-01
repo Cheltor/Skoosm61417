@@ -1,5 +1,10 @@
 class CommentsController < ApplicationController
-    def create
+  
+  def mycomments
+    @comments = Comment.all.where(user: current_user).order("created_at DESC")
+  end
+
+  def create
         @post = Post.find(params[:post_id])
         @comment = @post.comments.create(params.require(:comment).permit(:content, :post_id, :user_id))
         @comment.user = current_user
@@ -23,7 +28,7 @@ class CommentsController < ApplicationController
 	    format.html { redirect_to :back, notice: 'Comment was successfully destroyed.' }
 	    format.json { head :no_content }
 	  end
-    end
+  end
 
   def upvote
   	@post = Post.find(params[:post_id])
@@ -56,5 +61,24 @@ class CommentsController < ApplicationController
       @comment.user.decrease_karma
       redirect_to :back
     end
+  end
+
+  # POST /flags
+  # POST /flags.json
+  def hide
+    @post = Post.find(params[:post_id])
+    @comment = Comment.find(params[:id])
+    @hide = @comment.hides.create(params.permit(:comment_id,:user_id))
+    @hide.user_id = current_user.id
+    
+      respond_to do |format|
+        if @hide.save
+          format.html { redirect_to @post, notice: 'Hide was successfully created.' }
+          format.json { render json: @hide, status: :created, location: @hide }
+        else
+          format.html { redirect_to @post}
+          format.json { render json: @hide.errors, status: :unprocessable_entity }
+        end
+      end
   end
 end

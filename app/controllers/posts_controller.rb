@@ -3,6 +3,12 @@ class PostsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_action :authorized_user, only: [:edit, :update]
 
+  # GET /myposts
+  # GET /myposts.json
+  def myposts
+    @posts = Post.all.where(user: current_user).order("created_at DESC")
+  end
+  
   # GET /posts
   # GET /posts.json
   def index
@@ -28,6 +34,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = current_user.posts.build(post_params)
+    @post.user = current_user
 
     respond_to do |format|
       if @post.save
