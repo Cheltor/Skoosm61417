@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'staticpages#dashboard'
   get 'dashboard' => 'staticpages#dashboard'
   get 'myposts' => 'posts#myposts'
   get 'mycomments' => 'comments#mycomments'  
@@ -28,7 +29,7 @@ Rails.application.routes.draw do
       post 'enroll'
     end
   end  
-  root 'posts#index'
+  resources :enrolls
   resources :posts do
     resources :comments do
       member do

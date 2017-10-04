@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
-  
+  before_filter :authenticate_user!
+
   def mycomments
     @comments = Comment.all.where(user: current_user).order("created_at DESC")
   end

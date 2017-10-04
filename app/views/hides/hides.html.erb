@@ -14,7 +14,7 @@
       <tr>
         <td><%= hide.comment_id %></td>
         <td><%= hide.user.try(:email) %></td>
-        <td><%= link_to 'Destroy', hide, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Unhide', hide, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-primary' %></td>
       </tr>
     <% end %>
   </tbody>

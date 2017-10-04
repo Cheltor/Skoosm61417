@@ -16,7 +16,7 @@
         <td><%= flag.post.try(:title) %></td>
         <td><%= flag.book.try(:title)%></td>
         <td><%= flag.user.email %></td>
-        <td><%= link_to 'Destroy', flag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Unflag', flag, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-primary' %></td>
       </tr>
     <% end %>
   </tbody>

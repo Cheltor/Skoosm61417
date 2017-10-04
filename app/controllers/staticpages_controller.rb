@@ -1,9 +1,15 @@
 class StaticpagesController < ApplicationController
+  def about
+  end
+  
   def faq
   end
 
   def dashboard
-  	@enrolls = Enroll.all.where(user: current_user)
-  	@posts = Post.all.where()
+  	if user_signed_in?
+	  	@enrolls = Enroll.all.where(user: current_user)
+	  	@posts = Post.all
+      @myposts = Post.all.where(user: current_user)
+	end
   end
 end

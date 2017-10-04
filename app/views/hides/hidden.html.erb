@@ -20,7 +20,7 @@
         <td><%= comment.user.try(:email) %></td>
         <td><%= link_to 'Destroy', [comment.post, comment],
             method: :delete,
-            data: { confirm: 'Are you sure?' } %></td>
+            data: { confirm: 'Are you sure?' }, :class => 'btn btn-primary' %></td>
       </tr>
     <% end %>
   </tbody>
