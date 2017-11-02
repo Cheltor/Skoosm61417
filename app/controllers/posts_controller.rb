@@ -13,7 +13,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @search = Post.ransack(params[:q])
-    @posts = @search.result.includes(:comments).where.not(id: Flag.select(:post_id))
+    @posts = @search.result.includes(:comments).where.not(id: Flag.select(:post_id)).order("created_at DESC")
   end
 
   # GET /posts/1

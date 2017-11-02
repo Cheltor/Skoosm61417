@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_many :posts, :through => :flags
   has_many :hides
   has_many :comments, :through => :hides
+  validates_format_of :email, :with => /\A[\w+\-.]+@[a-z\d\-.]+\.[e]+[d]+[u]\z/i
+
   
   def increase_karma(count=1)
     update_attribute(:karma, karma + count)

@@ -1,39 +1,96 @@
+   
 <p id="notice"><%= notice %></p>
+<nav class="navbar navbar-ct-azure navbar-fixed-top" role="navigation">
+    <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button id="menu-toggle" type="button" class="navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar bar1"></span>
+        <span class="icon-bar bar2"></span>
+        <span class="icon-bar bar3"></span>
+      </button>
+      <a class="navbar-brand" href="#">Skoosm</a>
+    </div>
 
-<p>
-  <strong>Course:</strong>
-  <%= @post.course.name %>
-</p>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" class="btn btn-round btn-default">Sign in</a></li>
+            <li><a href="#" class="btn btn-round btn-default">Sign up</a></li>
+       </ul>
+      
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+ </nav>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+<div class="container" style="padding-top:70px">
+ <div class="row">
+    <div class="col-md-8 bottom-border">
+      <h1 class="title title-blog"><%= @post.title %></h1><h3><%= time_ago_in_words(@post.created_at) + " ago" %></h3>
+      <p><%= @post.content %></p>
+      <br>
+      <br>
+  </div>
+  <div class="col-md-3 col-md-offset-1">
+    <div class="social-buttons">
+        <h3 class="title title-blog">Points</h3>
+        <p><%= @post.get_upvotes.size %> - <%= @post.get_downvotes.size %> = <%= @post.weighted_score %></p>
+    </div>
 
-<p>
-  <strong>Url:</strong>
-  <%= @post.url %>
-</p>
+    <h3 class="title title-blog">Link</h3>
+    <p><% if @post.url.blank? %>
+        <% else %>
+          <p>
+            <%= link_to @post.url, @post.url, :target => "_blank" %>
+          </p>
+      <% end %>
+    </p>
 
-<p>
-  <strong>Content:</strong>
-  <%= @post.content %>
-</p>
+    <h3 class="title title-blog">Course </h3>
+    <span class="label label-warning label-fill"><%= @post.course.name %></span>
 
-<p>
-  <strong>Flag</strong>
-  <td><%= button_to 'Flag', flag_post_path(@post), method: :post %></td>
-</p>
+    <h3 class="title title-blog">Author</h3>
+    <p><%= @post.user.email %>(<%= @post.user.try(:karma) %>)</p>
 
-<div>
-  <h2>Comments</h2>
-  <%= render :partial => @post.comments.where.not(id: Hide.select(:comment_id)) %>
-  <h3>Add a comment</h3>
-  <%= render "comments/form" %>
-</div>
-
-<% if @post.user == current_user %>
+    <% if @post.user == current_user %>
     <td><%= link_to 'Edit', edit_post_path(@post), :class => 'btn btn-success' %></td>
-    <td><%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-success' %></td>
-<% end %>|
-<%= link_to 'Back', posts_path, :class => 'btn btn-success' %>
+    <td><%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-success' %></td>|
+    <% end %>
+    <%= link_to 'Back', posts_path, :class => 'btn btn-success' %>
+    <%= link_to 'Flag', flag_post_path(@post), method: :post, :class => 'btn btn-success' %>
+  </div>
+ </div>
+ <div class="section">
+      <div class="container container-comments">
+        <h3 class="title">Comments</h3>
+        <div class="row">
+                <div class="col-md-8 ">
+                    <div class="media-area">
+                        <div class="media">
+                              <div class="media-body">
+                                <%= render :partial => @post.comments.where.not(id: Hide.select(:comment_id)) %>
+                              </div>
+                        </div> <!-- end media -->
+
+                        <!--  Comment                    -->
+                       <div class="media media-post">
+                              <div class="media-body">
+                                    <textarea class="form-control" placeholder="Write some nice stuff or nothing..." rows="6"></textarea>
+                                    <div class="media-footer">
+                                         <a href="#" class="btn btn-info btn-round btn-fill btn-wd pull-right">Post Comment</a>
+                                    </div>
+                              </div>
+                          </div>
+                    </div> <!-- end media-area -->
+                </div> <!-- end col-md-8 -->
+            </div>
+      </div>
+ </div>
+  <div>
+    <h2>Comments</h2>
+    <%= render :partial => @post.comments.where.not(id: Hide.select(:comment_id)) %>
+    <h3>Add a comment</h3>
+    <%= render "comments/form" %>
+  </div>
+</div>
