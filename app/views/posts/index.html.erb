@@ -1,30 +1,3 @@
-<body class="home">
-<% if user_signed_in? %>
-<nav class="navbar navbar-ct-azure navbar-fixed-top" role="navigation">
-    <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button id="menu-toggle" type="button" class="navbar-toggle">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar bar1"></span>
-        <span class="icon-bar bar2"></span>
-        <span class="icon-bar bar3"></span>
-      </button>
-      <a class="navbar-brand" href="#">Skoosm</a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to 'New Post', new_post_path, class: "btn btn-round btn-default" %></li>
-            <li><a href="#" class="btn btn-round btn-default">Sign in</a></li>
-            <li><a href="#" class="btn btn-round btn-default">Sign up</a></li>
-       </ul>
-      
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-
 <div class="subscribe-line subscribe-line-default">
    <div class="container" style="padding-top:30px">
       <h2>Search all posts:</h2>
@@ -190,6 +163,3 @@
 
 
 <p id="notice"><%= notice %></p>
-
-<% end %>
-</body>
