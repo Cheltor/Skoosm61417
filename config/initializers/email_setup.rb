@@ -5,8 +5,8 @@ ActionMailer::Base.smtp_settings = {
   address:              'smtp.gmail.com',
   port:                 587,
   domain:               'skoosm.herokuapp.com',
-  user_name:            ENV["GMAIL_USERNAME"],
-  password:             ENV["GMAIL_PASSWORD"],
+  user_name:            'skoosmsendgrid@gmail.com',
+  password:             'TestTest23',
   authentication:       'plain',
   enable_starttls_auto: true 
 }
