@@ -4,13 +4,8 @@
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :university %><br />
-    <%= f.collection_select :university_id, University.all, :id, :name %>
-  </div>
-  
-  <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
