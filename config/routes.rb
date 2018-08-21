@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :businesses
   root 'staticpages#dashboard'
   get 'dashboard' => 'staticpages#dashboard'
   get 'myposts' => 'posts#myposts'
