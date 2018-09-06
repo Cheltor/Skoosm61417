@@ -10,6 +10,8 @@ class StaticpagesController < ApplicationController
 	  	@enrolls = Enroll.all.where(user: current_user)
 	  	@posts = Post.all
       @myposts = Post.all.where(user: current_user)
+      @comments = Comment.all
+      @mycomments = Comment.all.where(user: current_user)
 	end
   end
 end

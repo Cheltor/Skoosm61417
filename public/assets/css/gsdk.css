@@ -94,7 +94,7 @@ h1 .subtitle {
 }
 
 .text-primary, .text-primary:hover {
-  color: #3472F7 !important;
+  color: #007981 !important;
 }
 
 .text-info, .text-info:hover {
@@ -191,7 +191,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 .checkbox-blue.checkbox.checked,
 .radio-blue.radio.checked .second-icon,
 .radio-blue.radio.checked {
-  color: #3472F7;
+  color: #007981;
 }
 
 .ct-azure,
@@ -228,7 +228,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 
 input.ct-blue + span.switch-left,
 input.ct-blue + span + label + span.switch-right {
-  background-color: #3472F7;
+  background-color: #007981;
 }
 
 input.ct-azure + span.switch-left,
@@ -301,33 +301,33 @@ input.ct-red + span + label + span.switch-right {
 }
 
 .btn-primary {
-  border-color: #3472F7;
-  color: #3472F7;
+  border-color: #007981;
+  color: #007981;
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary:active:focus, .btn-primary:active:hover, .btn-primary.active:focus, .btn-primary.active:hover, .open > .btn-primary.dropdown-toggle, .open > .btn-primary.dropdown-toggle:focus, .open > .btn-primary.dropdown-toggle:hover {
   background-color: transparent;
-  color: #1D62F0;
-  border-color: #1D62F0;
+  color: #007981;
+  border-color: #007981;
 }
 .btn-primary.disabled, .btn-primary.disabled:hover, .btn-primary.disabled:focus, .btn-primary.disabled.focus, .btn-primary.disabled:active, .btn-primary.disabled.active, .btn-primary:disabled, .btn-primary:disabled:hover, .btn-primary:disabled:focus, .btn-primary:disabled.focus, .btn-primary:disabled:active, .btn-primary:disabled.active, .btn-primary[disabled], .btn-primary[disabled]:hover, .btn-primary[disabled]:focus, .btn-primary[disabled].focus, .btn-primary[disabled]:active, .btn-primary[disabled].active, fieldset[disabled] .btn-primary, fieldset[disabled] .btn-primary:hover, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .btn-primary.focus, fieldset[disabled] .btn-primary:active, fieldset[disabled] .btn-primary.active {
   background-color: transparent;
-  border-color: #3472F7;
+  border-color: #007981;
 }
 .btn-primary.btn-fill {
   color: #FFFFFF;
-  background-color: #3472F7;
+  background-color: #007981;
   opacity: 1;
   filter: alpha(opacity=100);
 }
 .btn-primary.btn-fill:hover, .btn-primary.btn-fill:focus, .btn-primary.btn-fill:active, .btn-primary.btn-fill.active, .open > .btn-primary.btn-fill.dropdown-toggle {
-  background-color: #1D62F0;
+  background-color: #007981;
   color: #FFFFFF;
 }
 .btn-primary.btn-fill .caret {
   border-top-color: #FFFFFF;
 }
 .btn-primary .caret {
-  border-top-color: #3472F7;
+  border-top-color: #007981;
 }
 
 .btn-success {
@@ -845,7 +845,7 @@ input.ct-red + span + label + span.switch-right {
 }
 
 .slider-primary .ui-widget-header {
-  background-color: #3472F7;
+  background-color: #007981;
 }
 
 .slider-info .ui-widget-header {
@@ -1130,8 +1130,8 @@ input.ct-red + span + label + span.switch-right {
 }
 
 .label-primary {
-  border-color: #3472F7;
-  color: #3472F7;
+  border-color: #007981;
+  color: #007981;
 }
 
 .label-info {
@@ -1159,7 +1159,7 @@ input.ct-red + span + label + span.switch-right {
 }
 
 .label-primary.label-fill, .progress-bar, .progress-bar-primary {
-  background-color: #3472F7;
+  background-color: #007981;
 }
 
 .label-info.label-fill, .progress-bar-info {
@@ -1263,8 +1263,8 @@ input.ct-red + span + label + span.switch-right {
   height: 40px;
 }
 .tagsinput.tag-blue .tag, .tagsinput.tag-blue .tagsinput-remove-link {
-  border-color: #3472F7;
-  color: #3472F7;
+  border-color: #007981;
+  color: #007981;
 }
 .tagsinput.tag-azure .tag, .tagsinput.tag-azure .tagsinput-remove-link {
   border-color: #2CA8FF;
@@ -1283,9 +1283,9 @@ input.ct-red + span + label + span.switch-right {
   color: #FF3B30;
 }
 .tagsinput.tag-fill.tag-blue .tag {
-  border-color: #3472F7;
+  border-color: #007981;
   color: #FFFFFF;
-  background-color: #3472F7;
+  background-color: #007981;
 }
 .tagsinput.tag-fill.tag-azure .tag {
   border-color: #2CA8FF;
@@ -3229,7 +3229,7 @@ body > .navbar-collapse.collapse {
   stroke: #888888;
 }
 .btn-morphing .circle-blue {
-  stroke: #3472F7;
+  stroke: #007981;
 }
 .btn-morphing .circle-azure {
   stroke: #2CA8FF;
@@ -3978,7 +3978,7 @@ body > .navbar-collapse.collapse {
 .pagination-blue > li.active > span:hover,
 .pagination-blue > li.active > a:focus,
 .pagination-blue > li.active > span:focus {
-  background-color: #3472F7;
+  background-color: #007981;
 }
 
 .nav-pills-azure > li.active > a,
@@ -4030,8 +4030,8 @@ body > .navbar-collapse.collapse {
 }
 
 .nav-pills-blue > li > a {
-  border: 1px solid #3472F7;
-  color: #3472F7;
+  border: 1px solid #007981;
+  color: #007981;
 }
 
 .nav-pills-azure > li > a {
@@ -4098,7 +4098,7 @@ body > .navbar-collapse.collapse {
 }
 
 .nav-blue > li.active a {
-  color: #3472F7;
+  color: #007981;
 }
 
 .nav-azure > li.active a {
@@ -6229,7 +6229,7 @@ body > .navbar-collapse.collapse {
 }
 .datepicker td.blue p,
 .datepicker td.blue:hover p {
-  background-color: #3472F7;
+  background-color: #007981;
 }
 .datepicker td.azure p,
 .datepicker td.azure:hover p {
@@ -6276,7 +6276,7 @@ body > .navbar-collapse.collapse {
 }
 .datepicker span.blue,
 .datepicker span.blue:hover {
-  background-color: #3472F7;
+  background-color: #007981;
 }
 .datepicker span.azure,
 .datepicker span.azure:hover {

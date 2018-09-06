@@ -13,25 +13,26 @@
 
   <div class="field">
     <%= f.label :course %><br />
-    <%= f.collection_select :course_id, Course.all, :id, :name_with_univ %>
+    <%= f.collection_select :course_id, Course.all, :id, :name_with_univ, class: "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :url %>
-    <%= f.text_field :url %>
+    <%= f.text_field :url, class: "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :content %>
-    <%= f.text_area :content %>
+    <%= f.text_area :content, class: "form-control" %>
   </div>
-
+  <br>
   <div class="actions">
-    <%= f.submit %>
+    <%= link_to 'Back', :back, class: "btn btn-primary pull-left" %>
+    <%= f.button :Submit, class: "btn btn-primary btn-fill pull-right" %>
   </div>
 <% end %>

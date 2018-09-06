@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :businesses
   root 'staticpages#dashboard'
-  get 'dashboard' => 'staticpages#dashboard'
+  get 'dashboard2' => 'staticpages#dashboard2'
   get 'myposts' => 'posts#myposts'
   get 'mycomments' => 'comments#mycomments'  
   resources :syllabuses do

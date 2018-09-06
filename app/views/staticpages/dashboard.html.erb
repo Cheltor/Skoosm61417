@@ -1,516 +1,148 @@
-<body class="home">
+<body>
   <% if user_signed_in? %>
-  <nav class="navbar navbar-ct-transparent navbar-fixed-top" role="navigation">
-      <div class="container">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button id="menu-toggle" type="button" class="navbar-toggle">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar bar1"></span>
-          <span class="icon-bar bar2"></span>
-          <span class="icon-bar bar3"></span>
-        </button>
-        <a class="navbar-brand" href="#">Skoosm</a>
-      </div>
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav pull-right">
-          <li style="font-weight:bold" class="dropdown">
-            <a href="#" class="btn btn-round btn-default" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">New<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><%= link_to 'New Post', new_post_path %></li>
-              <li><%= link_to 'New Book', new_book_path %></li>
-            </ul>
-          </li>
-          <li style="font-weight:bold" class="dropdown">
-            <a href="#" class="btn btn-round btn-default dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><%= link_to 'My Posts', myposts_path %></li>
-              <li role="separator" class="divider"></li>
-              <li><%= link_to 'Edit Password', edit_user_registration_path %></li>
-              <li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
-            </ul>
-          </li>
-        </ul>
-        
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
-    <div class="wrapper">
-      <div class="parallax filter-black">
-          <div class="parallax-image">
-              <img src="../assets/img/thumb.jpg" alt="..." />
-          </div>
-          <div class="small-info">
-              <h1>Skoosm</h1>
-              <h3>Your college companion!</h3>
-          </div>
-      </div>
-
-      <div class="section section-description">
-             <div class="container">
-                 <h2 class="section-title">So what is this?</h2>
-
-                 <div class="row">
-                      <div class="col-md-6">
-                         <h5>Shoulders of Giants</h5>
-                         <p>
-                             Isaac Newton once said "If I have seen further than others, it is by standing on the shoulders of giants." You are not the first person to have struggled with this problem for this class and you will not be the last. Skoosm is a place where studnets can find the answers to their problems and help others with theirs as well.</p>
-                          </p>Be sure to sign up and browse around for anything that may help with your classes or help others and recieve rewards. </p>
-
-                     </div>
-                     <div class="col-md-6">
-                          <div id="description-carousel" class="carousel fade" data-ride="carousel">
-                              <!-- Wrapper for slides -->
-                              <div class="carousel-inner">
-                                <div class="item active">
-                                  <img src="../assets/img/thumb.jpg" alt="..." />
-                                </div>
-                                <div class="item">
-                                  <img src="../assets/img/thumb.jpg" alt="..." />
-                                </div>
-                                <div class="item">
-                                  <img src="../assets/img/thumb.jpg" alt="..." />
-                                </div>
-                              </div>
-
-                              <ol class="carousel-indicators">
-                                <li data-target="#description-carousel" data-slide-to="0" class="active"></li>
-                                <li data-target="#description-carousel" data-slide-to="1"></li>
-                                <li data-target="#description-carousel" data-slide-to="2"></li>
-                              </ol>
-                        </div>
-                     </div>
+  <div class="container" style="text-align:center; padding-top:; padding-bottom:">
+    <h1>Dashboard</h1>
+  </div>
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6">
+            <% @enrolls.each do |enroll| %>
+              <div class="card container-fluid">
+                  <div class="header">
+                      <h4 class="title"><%= enroll.course.try(:name) %></h4>
+                      <p class="category"><div class="btn-group"><%= link_to 'Course Page', course_path(enroll.course), :class => 'btn btn-primary' %><%= link_to 'Unenroll', enroll, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></div></p>
                   </div>
-             </div>
-      </div><!-- section -->
-      <div class="space-50"></div>
-
-
-
-      <div class="section section-features-2">
-             <div class="container">
-                 <h2 class="section-title">Simply Put</h2>
-                 <div class="row">
-                     <div class="col-md-4">
-                         <div class="info">
-                              <div class="icon icon-azure">
-                                  <i class="pe-7s-clock"></i>
-                              </div>
-                              <div class="description">
-                                  <h5> Save Time </h5>
-                                  <p class="text-muted">Spend your time generating new ideas. You don't have to think waste your time searching for something your classmates have already found.</p>
-                              </div>
-                          </div>
-                       </div>
-                        <div class="col-md-4">
-                         <div class="info">
-                              <div class="icon icon-orange">
-                                  <i class="pe-7s-ticket"></i>
-                              </div>
-                              <div class="description">
-                                  <h5> Get Rewards </h5>
-                                  <p class="text-muted">Help out your fellow students by posting helpful links or answering their questions and recieve rewards from local businesses.</p>
-                              </div>
-                          </div>
-                       </div>
-                       <div class="col-md-4">
-                         <div class="info">
-                              <div class="icon icon-green">
-                                  <i class="pe-7s-cash"></i>
-                              </div>
-                              <div class="description">
-                                  <h5> Save Money </h5>
-                                  <p class="text-muted">Take our the middle man with student to student book sales that provide students with much needed extra cash.</p>
-                              </div>
-                          </div>
-                       </div>
-                 </div>
-             </div>
-      </div><!-- section -->
-
-      <div class="section section-testimonials">
-          <div class="container">
-              <h2 class="section-title">What people think...</h2>
-               <div id="testimonials-carousel" class="carousel slide" data-ride="carousel">
-                    <!-- Wrapper for slides -->
-                    <div class="carousel-inner">
-                      <div class="item active">
-                        <div class="row">
-                              <div class="col-md-6">
-                                   <div class="card card-plain">
-                                      <div class="content">
-                                          <a target="_blank" href="http://www.creative-tim.com/product/get-shit-done-pro">
-                                              <h4 class="title">This has to be the greatest thing that has ever existed.</h4>
-                                          </a>
-                                           <div class="footer">
-                                              <div class="author">
-                                                  <a class="card-link" href="#">
-                                                     <img src="../assets/img/default-avatar.png" alt="..." class="avatar">
-                                                     <span> Radu Tintescu </span>
-                                                  </a>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div> <!-- end card -->
-                               </div>
-                               <div class="col-md-6">
-                                   <div class="card card-plain">
-                                      <div class="content">
-                                              <h4 class="title">I can't imagine life without Skoosm.
-                                              </h4>
-
-                                           <div class="footer">
-                                              <div class="author">
-                                                  <a class="card-link" target="_blank" href="https://twitter.com/tudorvintilescu">
-                                                     <img src="../assets/img/default-avatar.png" alt="..." class="avatar">
-                                                     <span> Alex Paduraru </span>
-                                                  </a>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div> <!-- end card -->
-                               </div>
-                          </div> <!-- end row -->
-                      </div>
-                      <div class="item">
-                        <div class="row">
-                            <div class="col-md-6">
-                                  <div class="card card-plain">
-                                      <div class="content">
-                                          <a target="_blank" href="">
-                                              <h4 class="title">I have passed all of my classes thanks to Skoosm. </h4>
-                                          </a>
-                                           <div class="footer">
-                                              <div class="author">
-                                                  <a class="card-link" target="_blank" href="http://www.awwwards.com/">
-                                                     <img src="../assets/img/default-avatar.png" alt="..." class="avatar">
-                                                     <span> Conacel Elena </span>
-                                                  </a>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div> <!-- end card -->
-                               </div>
-                               <div class="col-md-6">
-                                   <div class="card card-plain">
-                                      <div class="content">
-                                          <a target="_blank" href="http://www.creative-tim.com/product/get-shit-done-pro">
-                                              <h4 class="title">Skoosm has saved me money on books and food.</h4>
-                                          </a>
-                                           <div class="footer">
-                                              <div class="author">
-                                                  <a class="card-link" target="_blank" href="#">
-                                                     <img src="../assets/img/default-avatar.png" alt="..." class="avatar">
-                                                     <span> Jay Z </span>
-                                                  </a>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div> <!-- end card -->
-                               </div>
-
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- Controls -->
-                    <a class="left carousel-control" href="#testimonials-carousel" data-slide="prev">
-                      <span class="fa fa-angle-left"></span>
-                    </a>
-                    <a class="right carousel-control" href="#testimonials-carousel" data-slide="next">
-                      <span class="fa fa-angle-right"></span>
-                    </a>
-              </div>
-          </div>
-      </div>
-
-       <div class="social-line">
-           <div class="container">
-              <div class="row">
-                   <div class="col-md-3">
-                       <a href="" class="btn btn-round btn-fill btn-social btn-facebook">
-                           <i class="fa fa-facebook-square"></i> Facebook
-                       </a>
-                   </div>
-                    <div class="col-md-3">
-                       <a href="" class="btn btn-round btn-fill btn-social btn-twitter">
-                           <i class="fa fa-twitter"></i> Twitter
-                       </a>
-                   </div>
-                    <div class="col-md-3">
-                       <a href="" class="btn btn-round btn-fill btn-social btn-google">
-                           <i class="fa fa-google-plus-square"></i> Google+
-                       </a>
-                   </div>
-                   <div class="col-md-3">
-                       <a href="" class="btn btn-round btn-fill btn-social btn-pinterest">
-                           <i class="fa fa-pinterest"></i> Pinterest
-                       </a>
-                   </div>
-              </div>
-           </div>
-       </div>
-
-
-      <footer class="footer footer-big">
-          <!-- .footer-black is another class for the footer, for the transparent version, we recommend you to change the url of the image with your favourite image.          -->
-
-          <div class="container">
-              <div class="row">
-                  <div class="col-md-4">
-                      <h5 class="title">Company</h5>
-                      <nav>
-                          <ul>
-                              <li>
-                                  <a href="#" >
-                                      Home
-                                  </a>
-                              </li>
-                              <li>
-                                  <a href="#">
-                                      About Us
-                                  </a>
-                              </li>
-                          </ul>
-                      </nav>
+                  <div class="content">
+                      <%= enroll.course.posts.count %> posts
+                      <%= enroll.course.enrolls.count %> enrolls
                   </div>
-                  <div class="col-md-4">
-                      <h5 class="title"> Support</h5>
-                      <nav>
-                          <ul>
-                              <li>
-                                  <a href="#">
-                                     Contact Us
-                                  </a>
-                              </li>
-                          </ul>
-                      </nav>
-                  </div>
-                  <div class="col-md-4">
-                      <h5 class="title"> Help</h5>
-                      <nav>
-                          <ul>
-                              <li>
-                                  <a href="#">
-                                      Terms & Conditions
-                                  </a>
-                              </li>
-                              <li>
-                                  <a href="#">
-                                      Company Policy
-                                  </a>
-                              </li>
-                          </ul>
-                      </nav>
-
-                  </div>
-
               </div>
-              <hr />
-              <div class="copyright">
-                  &copy; 2017 Skoosm
-              </div>
+          <% end %>
           </div>
-      </footer>
-  </div> <!-- wrapper -->
-  <% else %>
-  <nav class="navbar navbar-ct-transparent navbar-fixed-top" role="navigation">
-      <div class="container">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button id="menu-toggle" type="button" class="navbar-toggle">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar bar1"></span>
-          <span class="icon-bar bar2"></span>
-          <span class="icon-bar bar3"></span>
-        </button>
-      </div>
+          <div class="col-md-6">
+            <div class="table-responsive">
+              <div class="card container-fluid">
+                <h4 class="title">My Posts</h1>
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav navbar-right">
-              <li><%= link_to 'Sign In', new_user_session_path, class: "btn btn-round btn-primary btn-fill" %></li>
-              <li><%= link_to 'Sign Up', new_user_registration_path, class: "btn btn-round btn-primary btn-fill" %></li>
-         </ul>
-        
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
-  <div class="wrapper">
-      <div class="parallax filter-black">
-          <div class="parallax-image">
-              <img src="../assets/img/thumb.jpg" alt="..." />
-          </div>
-          <div class="small-info" style="padding-top:">
-            <h1>Start spending time on what matters.</h1>
-            <p>Find the resources you need on Skoosm.</p>
-            <div class="btn-group">
-              <%= link_to 'Sign Up', new_user_registration_path, class: "btn btn-round btn-primary btn-fill" %>
-              <%= link_to 'Sign Up', new_user_registration_path, class: "btn btn-round btn-primary btn-fill" %>
-              <%= link_to 'Sign Up', new_user_registration_path, class: "btn btn-round btn-primary btn-fill" %>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Title</th>
+                      <th>Course</th>
+                      <th>Post Karma</th>
+                      <th>Time created</th>
+                      <th colspan="1"></th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <% @myposts.each do |post| %>
+                      <tr>
+                        <td><%= post.title %></td>
+                        <td><%= post.course.name %></td>
+                        <td><%= post.get_upvotes.size %> - <%= post.get_downvotes.size %> = <%= post.weighted_score %> </td>
+                        <td><%= time_ago_in_words(post.created_at) + " ago" %></td>
+                        <td><%= link_to 'Show', post, :class => 'btn btn-primary btn-round' %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <div class="card container-fluid">
+                <h4 class="title">My Comments</h1>
+
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Post</th>
+                      <th>Content</th>
+                      <th>Comment Karma</th>
+                      <th>Time created</th>
+                      <th colspan="1"></th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <% @mycomments.each do |comment| %>
+                      <tr>
+                        <td><%= comment.post.title %></td>
+                        <td><%= comment.content %></td>
+                        <td><%= comment.get_upvotes.size %> - <%= comment.get_downvotes.size %> = <%= comment.weighted_score %> </td>
+                        <td><%= time_ago_in_words(comment.created_at) + " ago" %></td>
+                        <td><%= link_to 'Show', comment.post, :class => 'btn btn-primary btn-round' %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
+        </div>
       </div>
+    </div>
+  <% else %>
+  <div class="wrapper">
+    <div class="container" style="text-align:center; padding-top:20px; padding-bottom:20px">
+      <h1>Welcome to Skoosm!</h1>
+    </div>
+     <div class="subscribe-line subscribe-line-default">
+         <div class="container">
+            <div class="row" style="text-align:center">
+                 <div class="col-sm-offset-2 col-sm-6">
+                    <form class="">
+                         <div class="form-group">
+                              <input type="text" value="" class="form-control" placeholder=" Search our posts" style="border: 1px solid; border-color: #007981">
+                         </div>
+                     </form>
+                 </div>
+                 <div class="col-sm-2">
+                     <button type="button" class="btn btn-primary btn-fill btn-block btn-lg">Search!</button>
+                 </div>
+            </div>
+         </div>
+     </div>
+     <br>
+     <div class="container">
+         <div class="row">
+              <div class="col-md-6">
+                 <h5>Shoulders of Giants</h5>
+                 <p>
+                     Isaac Newton once said "If I have seen further than others, it is by standing on the shoulders of giants." You are not the first person to have struggled with this problem for this class and you will not be the last. Skoosm is a place where studnets can find the answers to their problems and help others with theirs as well.</p>
+                  <p>
+                    Make sure to sign up and browse around for anything that may help with your classes or help others and recieve rewards. </p>
 
-      <div class="section section-description">
-             <div class="container">
-                 <h2 class="section-title">So what is this?</h2>
-
-                 <div class="row">
-                      <div class="col-md-6">
-                         <h5>Shoulders of Giants</h5>
-                         <p>
-                             Isaac Newton once said "If I have seen further than others, it is by standing on the shoulders of giants." You are not the first person to have struggled with this problem for this class and you will not be the last. Skoosm is a place where studnets can find the answers to their problems and help others with theirs as well.</p>
-                          <p>
-                            Be sure to sign up and browse around for anything that may help with your classes or help others and recieve rewards. </p>
-
-                     </div>
-                     <div class="col-md-6">
-                          <div id="description-carousel" class="carousel fade" data-ride="carousel">
-                              <!-- Wrapper for slides -->
-                              <div class="carousel-inner">
-                                <div class="item active">
-                                  <img src="../assets/img/thumb.jpg" alt="..." />
-                                </div>
-                                <div class="item">
-                                  <img src="../assets/img/thumb.jpg" alt="..." />
-                                </div>
-                                <div class="item">
-                                  <img src="../assets/img/thumb.jpg" alt="..." />
-                                </div>
-                              </div>
-
-                              <ol class="carousel-indicators">
-                                <li data-target="#description-carousel" data-slide-to="0" class="active"></li>
-                                <li data-target="#description-carousel" data-slide-to="1"></li>
-                                <li data-target="#description-carousel" data-slide-to="2"></li>
-                              </ol>
-                        </div>
-                     </div>
-                  </div>
              </div>
-      </div><!-- section -->
-      <div class="space-50"></div>
-
-
-
-      <!-- <div class="section section-testimonials">
-          <div class="container">
-              <h2 class="section-title">What people think...</h2>
-               <div id="testimonials-carousel" class="carousel slide" data-ride="carousel">
-                    <! Wrapper for slides >
-                    <div class="carousel-inner">
-                      <div class="item active">
-                        <div class="row">
-                              <div class="col-md-6">
-                                   <div class="card card-plain">
-                                      <div class="content">
-                                          <a target="_blank" href="http://www.creative-tim.com/product/get-shit-done-pro">
-                                              <h4 class="title">This has to be the greatest thing that has ever existed.</h4>
-                                          </a>
-                                           <div class="footer">
-                                              <div class="author">
-                                                  <a class="card-link" href="#">
-                                                     <img src="../assets/img/default-avatar.png" alt="..." class="avatar">
-                                                     <span> Radu Tintescu </span>
-                                                  </a>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>  <! end card > 
-                               </div>
-                               <div class="col-md-6">
-                                   <div class="card card-plain">
-                                      <div class="content">
-                                              <h4 class="title">I can't imagine life without Skoosm.
-                                              </h4>
-
-                                           <div class="footer">
-                                              <div class="author">
-                                                  <a class="card-link" target="_blank" href="https://twitter.com/tudorvintilescu">
-                                                     <img src="../assets/img/default-avatar.png" alt="..." class="avatar">
-                                                     <span> Alex Paduraru </span>
-                                                  </a>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>  <! end card >
-                               </div>
-                          </div> <! end row >
-                      </div>
-                      <div class="item">
-                        <div class="row">
-                            <div class="col-md-6">
-                                  <div class="card card-plain">
-                                      <div class="content">
-                                          <a target="_blank" href="">
-                                              <h4 class="title">I have passed all of my classes thanks to Skoosm. </h4>
-                                          </a>
-                                           <div class="footer">
-                                              <div class="author">
-                                                  <a class="card-link" target="_blank" href="http://www.awwwards.com/">
-                                                     <img src="../assets/img/default-avatar.png" alt="..." class="avatar">
-                                                     <span> Conacel Elena </span>
-                                                  </a>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div> <! end card >
-                               </div>
-                               <div class="col-md-6">
-                                   <div class="card card-plain">
-                                      <div class="content">
-                                          <a target="_blank" href="http://www.creative-tim.com/product/get-shit-done-pro">
-                                              <h4 class="title">Skoosm has saved me money on books and food.</h4>
-                                          </a>
-                                           <div class="footer">
-                                              <div class="author">
-                                                  <a class="card-link" target="_blank" href="#">
-                                                     <img src="../assets/img/default-avatar.png" alt="..." class="avatar">
-                                                     <span> Jay Z </span>
-                                                  </a>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div> <! end card >
-                               </div>
-
-                        </div>
-                      </div>
-                    </div>
-
-                    <! Controls >
-                    <a class="left carousel-control" href="#testimonials-carousel" data-slide="prev">
-                      <span class="fa fa-angle-left"></span>
-                    </a>
-                    <a class="right carousel-control" href="#testimonials-carousel" data-slide="next">
-                      <span class="fa fa-angle-right"></span>
-                    </a>
-              </div>
+             <div class="col-md-6">
+                <div class="img-container">
+                    <img src="../assets/img/thumb.jpg" alt="..." />
+                </div>
+             </div>
           </div>
-      </div> -->
+     </div>
+     <div class="space-50"></div>
 
        <div class="social-line">
            <div class="container">
               <div class="row">
-                   <div class="col-md-3">
+                   <div class="col-sm-3">
                        <a href="" class="btn btn-round btn-fill btn-social btn-facebook">
                            <i class="fa fa-facebook-square"></i> Facebook
                        </a>
                    </div>
-                    <div class="col-md-3">
+                    <div class="col-sm-3">
                        <a href="" class="btn btn-round btn-fill btn-social btn-twitter">
                            <i class="fa fa-twitter"></i> Twitter
                        </a>
                    </div>
-                    <div class="col-md-3">
+                    <div class="col-sm-3">
                        <a href="" class="btn btn-round btn-fill btn-social btn-google">
                            <i class="fa fa-google-plus-square"></i> Google+
                        </a>
                    </div>
-                   <div class="col-md-3">
+                   <div class="col-sm-3">
                        <a href="" class="btn btn-round btn-fill btn-social btn-reddit">
                            <i class="fa fa-reddit"></i> Reddit
                        </a>
@@ -520,66 +152,7 @@
        </div>
 
 
-      <footer class="footer footer-big">
-          <!-- .footer-black is another class for the footer, for the transparent version, we recommend you to change the url of the image with your favourite image.          -->
 
-          <div class="container">
-              <div class="row" style="text-align: center">
-                  <div class="col-md-4" >
-                      <h5 class="title">Company</h5>
-                      <nav>
-                          <ul>
-                              <li>
-                                  <a href="#" >
-                                      Home
-                                  </a>
-                              </li>
-                              <li>
-                                  <a href="#">
-                                      About Us
-                                  </a>
-                              </li>
-                          </ul>
-                      </nav>
-                  </div>
-                  <div class="col-md-4">
-                      <h5 class="title"> Support</h5>
-                      <nav>
-                          <ul>
-                              <li>
-                                  <a href="#">
-                                     Contact Us
-                                  </a>
-                              </li>
-                          </ul>
-                      </nav>
-                  </div>
-                  <div class="col-md-4">
-                      <h5 class="title"> Help</h5>
-                      <nav>
-                          <ul>
-                              <li>
-                                  <a href="#">
-                                      Terms & Conditions
-                                  </a>
-                              </li>
-                              <li>
-                                  <a href="#">
-                                      Company Policy
-                                  </a>
-                              </li>
-                          </ul>
-                      </nav>
-
-                  </div>
-
-              </div>
-              <hr />
-              <div class="copyright">
-                  &copy; 2018 Skoosm
-              </div>
-          </div>
-      </footer>
   </div> <!-- wrapper -->
   <% end %>
 </body>
