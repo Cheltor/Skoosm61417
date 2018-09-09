@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :businesses
+  resources :rewards
+  devise_for :businesses, path: 'businesses'
   root 'staticpages#dashboard'
   get 'dashboard2' => 'staticpages#dashboard2'
   get 'myposts' => 'posts#myposts'
@@ -24,7 +25,7 @@ Rails.application.routes.draw do
   end
   resources :subjects
   resources :universities
-  devise_for :users
+  devise_for :users, path: 'users'
   resources :courses do
     member do
       post 'enroll'
