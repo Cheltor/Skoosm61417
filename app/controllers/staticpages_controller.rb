@@ -12,6 +12,9 @@ class StaticpagesController < ApplicationController
       @myposts = Post.all.where(user: current_user)
       @comments = Comment.all
       @mycomments = Comment.all.where(user: current_user)
+    else
+      @search = Post.ransack(params[:q])
+      @posts = @search.result.includes(:comments)
 	end
   end
 end

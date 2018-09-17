@@ -1,15 +1,4 @@
-<p>
-  <%= comment.content %>
-  <%= comment.user.try(:email) %>
-	<% if comment.user == current_user %>
-		<%= link_to 'Destroy', [comment.post, comment],
-			method: :delete,
-			data: { confirm: 'Are you sure?' } %>
-	<% end %>
-     <%= link_to like_post_comment_path(@post, comment), method: :put do %>upvote<% end %><%= comment.get_upvotes.size %>
-     <%= link_to dislike_post_comment_path(@post, comment), method: :put do %>downvote<% end %><%= comment.get_downvotes.size %>
-     <%= button_to 'Hide', hide_post_comment_path(@post, comment), method: :post %>
-</p>
+
 
 <h4 class="media-heading"><%= comment.user.try(:email) %></h4>
 <h6 class="pull-right text-muted"><%= time_ago_in_words(comment.created_at) + " ago" %></h6>
@@ -17,9 +6,7 @@
 <p><%= comment.content %></p>
 
 <div class="media-footer">
-    <a href="#" class="btn btn-danger btn-simple pull-right">
-     <%= link_to like_post_comment_path(@post, comment), method: :put do %>upvote<% end %><%= comment.get_upvotes.size %>
-     <%= link_to dislike_post_comment_path(@post, comment), method: :put do %>downvote<% end %><%= comment.get_downvotes.size %>
-     <%= button_to 'Hide', hide_post_comment_path(@post, comment), method: :post %>
-    </a>
+     <%= link_to like_post_comment_path(@post, comment), :class => "btn btn-default", method: :put do %>upvote (<%= comment.get_upvotes.size %>)<% end %>
+     <%= link_to dislike_post_comment_path(@post, comment), :class => "btn btn-default", method: :put do %>downvote (<%= comment.get_downvotes.size %>)<% end %>
+     <%= link_to 'Hide', hide_post_comment_path(@post, comment), :class => "btn btn-default", method: :post %>
 </div>

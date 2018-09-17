@@ -1,63 +1,66 @@
 <div class="container" style="text-align:center; padding-top:20px; padding-bottom:20px">
   <h1>All posts</h1>
 </div>
- <div class="subscribe-line subscribe-line-default">
+ <div class="container">
+   <%= search_form_for @search, defaults: {wrapper: :inline_field4} do |f| %>
      <div class="container">
         <div class="row" style="text-align:center">
              <div class="col-md-offset-2 col-md-6">
                 <form class="">
                      <div class="form-group">
-                          <input type="text" value="" class="form-control" placeholder=" Search our posts" style="border: 1px solid; border-color: #007981">
+                          <%= f.text_field :title_or_content_or_comments_content_cont, placeholder: 'Search our posts', :class => 'form-control' %>
                      </div>
                  </form>
              </div>
              <div class="col-md-2">
-                 <button type="button" class="btn btn-primary btn-fill btn-block btn-lg">Search!</button>
+                <%= f.submit "Search", :class => 'btn btn-primary btn-fill btn-block' %>
              </div>
         </div>
      </div>
+   <% end %>
  </div>
+ <br>
 <div class="table-responsive">
-    <table class="table">
-          <thead>
-            <tr>
-              <th></th>
-              <th style="text-align: center">Title</th>
-              <th style="text-align: center">Course</th>
-              <th style="text-align: center">University</th>
-              <th style="text-align: center">Post Karma</th>
-              <th style="text-align: center">User(karma)</th>
-              <th style="text-align: center">Like</th>
-              <th style="text-align: center">Dislike</th>
-              <th style="text-align: center">Time created</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @posts.each do |post| %>
-              <tr>
-                <td style="text-align: center"><%= link_to 'Show', post, :class => 'btn btn-primary btn-round' %></td>
-                <td style="text-align: center"><%= post.title %></td>
-                <td style="text-align: center"><%= post.course.name %></td>
-                <td style="text-align: center"><%= post.course.university.name %></td>
-                <% if post.user.blank? %>
-                    <td style="text-align: center">N/A</td>
-                    <td style="text-align: center">User Deleted</td>
-                    <td style="text-align: center">N/A</td>
-                    <td style="text-align: center">N/A</td>
-                  <% else %>
-                    <td style="text-align: center"><%= post.get_upvotes.size %> - <%= post.get_downvotes.size %> = <%= post.weighted_score %> </td>
-                    <td style="text-align: center"><%= post.user.email %>(<%= post.user.try(:karma) %>)</td>
-                    <td class="td-actions text-center"><%= link_to like_post_path(post), method: :put do %>
-                      <span class="pe-7s-up-arrow" style="font-size: 20pt"></span><% end %></td>
-                    <td class="td-actions text-center"><%= link_to dislike_post_path(post), method: :put do %>
-                      <span class="pe-7s-bottom-arrow" style="font-size: 20pt"></span><% end %></td>
-                <% end %>
-                <td style="text-align: center"><%= time_ago_in_words(post.created_at) + " ago" %></td>
-              </tr>
-            <% end %>
-          </tbody>
-      </table>
-    </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th style="text-align: center">Title</th>
+        <th style="text-align: center">Course</th>
+        <th style="text-align: center">University</th>
+        <th style="text-align: center">Post Karma</th>
+        <th style="text-align: center">User(karma)</th>
+        <th style="text-align: center">Like</th>
+        <th style="text-align: center">Dislike</th>
+        <th style="text-align: center">Time created</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td style="text-align: center"><%= link_to 'Show', post, :class => 'btn btn-primary btn-round' %></td>
+          <td style="text-align: center"><%= post.title %></td>
+          <td style="text-align: center"><%= post.course.name %></td>
+          <td style="text-align: center"><%= post.course.university.name %></td>
+          <% if post.user.blank? %>
+              <td style="text-align: center">N/A</td>
+              <td style="text-align: center">User Deleted</td>
+              <td style="text-align: center">N/A</td>
+              <td style="text-align: center">N/A</td>
+            <% else %>
+              <td style="text-align: center"><%= post.get_upvotes.size %> - <%= post.get_downvotes.size %> = <%= post.weighted_score %> </td>
+              <td style="text-align: center"><%= post.user.email %>(<%= post.user.try(:karma) %>)</td>
+              <td class="td-actions text-center"><%= link_to like_post_path(post), method: :put do %>
+                <span class="pe-7s-up-arrow" style="font-size: 20pt"></span><% end %></td>
+              <td class="td-actions text-center"><%= link_to dislike_post_path(post), method: :put do %>
+                <span class="pe-7s-bottom-arrow" style="font-size: 20pt"></span><% end %></td>
+          <% end %>
+          <td style="text-align: center"><%= time_ago_in_words(post.created_at) + " ago" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 
 

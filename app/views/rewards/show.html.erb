@@ -1,19 +1,19 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+	<h3 style="text-align:center">
+	  <strong><%= @reward.name %></strong>
+	</h3>
 
-<p>
-  <strong>Name:</strong>
-  <%= @reward.name %>
-</p>
+	<p style="text-align:center">
+	  <strong>Cost:</strong>
+	  <%= @reward.cost %> Points
+	</p>
 
-<p>
-  <strong>Cost:</strong>
-  <%= @reward.cost %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @reward.description %>
-</p>
-
-<%= link_to 'Edit', edit_reward_path(@reward) %> |
-<%= link_to 'Back', rewards_path %>
+	<p style="text-align:center">
+	  <strong>Description:</strong>
+	  <%= @reward.description %>
+	</p>
+	<div style="text-align:center">
+		<%= link_to 'Edit', edit_reward_path(@reward) %> |
+		<%= link_to 'Back', rewards_path %>
+	</div>
+</div>
