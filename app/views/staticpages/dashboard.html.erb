@@ -7,6 +7,11 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-6">
+            <h4 class="title">My Courses</h2>
+            <% if @enrolls.blank? %>
+              <h5 style= "text-align:center">You haven't signed up for any courses yet.</h5>
+              <p style= "text-align:center"><%= link_to 'Courses', courses_path, class: "btn btn-primary btn-round btn-fill" %></p>
+            <% else %>
             <% @enrolls.each do |enroll| %>
               <div class="card container-fluid">
                   <div class="header">
@@ -18,12 +23,18 @@
                       <%= enroll.course.enrolls.count %> enrolls
                   </div>
               </div>
-          <% end %>
+            <% end %>
+            <% end %>
           </div>
           <div class="col-md-6">
             <div class="table-responsive">
               <div class="container-fluid">
                 <h4 class="title">My Posts</h1>
+
+                  <% if @posts.blank? %>
+                  <h5 style= "text-align:center">You haven't made any posts yet.</h2>
+                  <p style= "text-align:center"><%= link_to 'New Post', new_post_path, class: "btn btn-primary btn-round btn-fill" %></p>
+                  <% else %>
 
                 <table class="table">
                   <thead>
@@ -48,12 +59,15 @@
                     <% end %>
                   </tbody>
                 </table>
+                <% end %>
               </div>
             </div>
             <div class="table-responsive">
               <div class="container-fluid">
                 <h4 class="title">My Comments</h1>
-
+                <% if @enrolls.blank? %>
+                  <h5 style= "text-align:center">You haven't made any comments yet.</h5>
+                <% else %>
                 <table class="table">
                   <thead>
                     <tr>
@@ -77,6 +91,7 @@
                     <% end %>
                   </tbody>
                 </table>
+                <% end %>
               </div>
             </div>
           </div>
