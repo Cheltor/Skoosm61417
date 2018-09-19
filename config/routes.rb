@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'allbiz' => 'staticpages#allbiz'
+
   resources :rewards
   devise_for :businesses, path: 'businesses'
   root 'staticpages#dashboard'

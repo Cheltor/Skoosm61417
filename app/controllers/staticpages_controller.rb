@@ -15,6 +15,10 @@ class StaticpagesController < ApplicationController
     else
       @search = Post.ransack(params[:q])
       @posts = @search.result.includes(:comments)
-	end
+	  end
+  end
+
+  def allbiz
+    @businesses = Business.all
   end
 end

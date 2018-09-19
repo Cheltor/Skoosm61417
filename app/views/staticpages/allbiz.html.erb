@@ -1,0 +1,22 @@
+<div class="container">
+	<h1>All Businesses</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @businesses.each do |business| %>
+        <tr>
+          <td><%= business.name %></td>
+          <td><%= business.email %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
