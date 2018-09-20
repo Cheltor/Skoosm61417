@@ -1,9 +1,5 @@
 <div class="container">
-  <p>
-    <strong>Name:</strong>
-    <%= @course.name %>
-  </p>
-
+  <h1 style="text-align:center; padding-top:20px; padding-bottom:20px"><%= @course.name %></h1>
   <% if user_signed_in? %>
     <% if @enrolls.blank? %>
       <p>

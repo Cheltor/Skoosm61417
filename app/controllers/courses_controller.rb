@@ -4,7 +4,8 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+    @search = Course.ransack(params[:q])
+    @courses = @search.result.order("created_at DESC")
   end
 
   # POST /enrolls

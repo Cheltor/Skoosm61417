@@ -1,6 +1,22 @@
 <div class="container">
-  <h1>Courses</h1>
-
+  <h1 style="text-align:center; padding-top:20px; padding-bottom:20px">Courses</h1>
+ <div class="container">
+   <%= search_form_for @search, defaults: {wrapper: :inline_field4} do |f| %>
+     <div class="container">
+        <div class="row" style="text-align:center">
+             <div class="col-md-offset-2 col-md-6">
+                <form class="">
+                     <div class="form-group">
+                          <%= f.text_field :name, placeholder: 'Search our Courses', :class => 'form-control' %>
+                     </div>
+                 </form>
+             </div>
+             <div class="col-md-2">
+                <%= f.submit "Search", :class => 'btn btn-primary btn-fill btn-block' %>
+             </div>
+        </div>
+     </div>
+   <% end %>
   <table>
     <thead>
       <tr>
