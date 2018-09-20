@@ -29,7 +29,7 @@
           <div class="col-md-6">
             <div class="table-responsive">
               <div class="container-fluid">
-                <h4 class="title">My Posts</h1>
+                <h4 class="title">My Posts</h4>
 
                   <% if @posts.blank? %>
                   <h5 style= "text-align:center">You haven't made any posts yet.</h2>
@@ -98,6 +98,68 @@
         </div>
       </div>
     </div>
+  <% elsif business_signed_in? %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h4 style="text-align:center">Business Name: <strong><%= current_business.name %></strong></h4>
+        <div style="text-align:center">
+          <button class="btn btn-primary btn-round" data-toggle="modal" data-target="#myModal">
+            Our business reward code
+          </button>
+          <br><br>
+          <%= link_to 'New Reward', new_reward_path, :class => "btn btn-round btn-primary btn-fill" %>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Our code</h4>
+              </div>
+              <div class="modal-body" style="text-align:center">
+                <%= current_business.code %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <h4>Our Rewards</h4>
+        <% if @rewards.blank? %>
+          <h5>You have not created any rewards yet</h5>
+        <% else %>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Cost</th>
+                <th>Description</th>
+                <th>Time created</th>
+                <th colspan="1"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @myrewards.each do |reward| %>
+                <tr>
+                  <td><%= reward.name %></td>
+                  <td><%= reward.cost %></td>
+                  <td><%= reward.description %></td>
+                  <td><%= time_ago_in_words(reward.created_at) + " ago" %></td>
+                  <td><%= link_to 'Show', reward, :class => 'btn btn-primary btn-round' %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% end %>
+      </div>
+    </div>
+  </div>
   <% else %>
   <div class="wrapper">
     <div class="container" style="text-align:center; padding-top:20px; padding-bottom:20px">
@@ -112,7 +174,6 @@
                      Isaac Newton once said "If I have seen further than others, it is by standing on the shoulders of giants." You are not the first person to have struggled with this problem for this class and you will not be the last. Skoosm is a place where studnets can find the answers to their problems and help others with theirs as well.</p>
                   <p>
                     Make sure to sign up and browse around for anything that may help with your classes or help others and recieve rewards. </p>
-
              </div>
              <div class="col-md-6">
                 <div class="img-container">
@@ -122,7 +183,6 @@
           </div>
      </div>
      <div class="space-50"></div>
-
        <div class="social-line">
            <div class="container">
               <div class="row">
@@ -149,9 +209,6 @@
               </div>
            </div>
        </div>
-
-
-
   </div> <!-- wrapper -->
   <% end %>
 </body>

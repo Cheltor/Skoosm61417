@@ -65,14 +65,14 @@
                   <li><%= link_to 'Sign In', new_user_session_path %></li>
                 </ul>
               <% end %>
-          </nav>
+          </nav> 
 
     <% flash.each do |name, msg| %>
     <%= content_tag(:div, msg, class: "alert alert-#{name}", style: "color: #007981; text-align:center") %>
     <% end %>
     <%= yield %>
 
-    <footer class="footer footer-big fixed-bottom">
+    <div class="footer footer-big fixed-bottom">
         <!-- .footer-black is another class for the footer, for the transparent version, we recommend you to change the url of the image with your favourite image.          -->
 
         <div class="container">
@@ -134,7 +134,7 @@
                 &copy; 2018 Skoosm
             </div>
         </div>
-    </footer>
+    </div>
   </body>
     
     <!-- If you are using TypeKit.com uncomment this code otherwise you can delete it -->
@@ -163,5 +163,4 @@
 
     <!--  Get Shit Done Kit PRO Core javascript    -->
   <script src="../assets/js/get-shit-done.js"></script>
-
 </html>
