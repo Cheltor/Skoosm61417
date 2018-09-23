@@ -1,47 +1,51 @@
-<div class="container">
-  <h1 style="text-align:center; padding-top:20px; padding-bottom:20px">Courses</h1>
- <div class="container">
-   <%= search_form_for @search, defaults: {wrapper: :inline_field4} do |f| %>
-     <div class="container">
-        <div class="row" style="text-align:center">
-             <div class="col-md-offset-2 col-md-6">
-                <form class="">
-                     <div class="form-group">
-                          <%= f.text_field :name_cont, placeholder: 'Search our Courses', :class => 'form-control' %>
-                     </div>
-                 </form>
-             </div>
-             <div class="col-md-2">
-                <%= f.submit "Search", :class => 'btn btn-primary btn-fill btn-block' %>
-             </div>
-        </div>
-     </div>
-   <% end %>
-  <table>
+<div class="container" style="text-align:center; padding-top:20px; padding-bottom:20px">
+  <h1>All Courses</h1>
+</div>
+<div class="container" style="text-align:center">
+ <%= search_form_for @search, defaults: {wrapper: :inline_field4} do |f| %>
+   <div class="container">
+      <div class="row" style="text-align:center">
+           <div class="col-md-offset-2 col-md-6">
+              <form class="">
+                   <div class="form-group">
+                        <%= f.text_field :name_cont, placeholder: 'Search our Courses', :class => 'form-control' %>
+                   </div>
+               </form>
+           </div>
+           <div class="col-md-2">
+              <%= f.submit "Search", :class => 'btn btn-primary btn-fill btn-block' %>
+           </div>
+      </div>
+   </div>
+ <% end %>
+</div>
+<% if current_user.blank? %>
+<% elsif current_user.email != 'rchelton@umd.edu' %>
+<% elsif current_user.email == 'rchelton@umd.edu' %>
+  <div style="text-align:center">
+    <%= link_to 'New Course', new_course_path, :class => "btn btn-primary btn-round btn-fill" %>
+  </div>
+<% end %>
+
+<div class="table-responsive">
+  <table class="table">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Subject</th>
-        <th>University</th>
-        <th colspan="3"></th>
+        <th></th>
+        <th style="text-align: center">Name</th>
+        <th style="text-align: center">Subject</th>
+        <th style="text-align: center">University</th>
       </tr>
     </thead>
-
     <tbody>
       <% @courses.each do |course| %>
         <tr>
-          <td><%= course.name %></td>
-          <td><%= course.subject.name %></td>
-          <td><%= course.university.name %></td>
-          <td><%= link_to 'Show', course, :class => 'btn btn-primary' %></td>
-          <td><%= link_to 'Edit', edit_course_path(course), :class => 'btn btn-primary', :class => 'btn btn-primary' %></td>
-          <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-primary' %></td>
+          <td style="text-align: center"><%= link_to 'Show', course, :class => 'btn btn-primary btn-round' %></td>
+          <td style="text-align: center"><%= course.name %></td>
+          <td style="text-align: center"><%= course.subject.name %></td>
+          <td style="text-align: center"><%= course.university.name %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-
-  <br>
-
-  <%= link_to 'New Course', new_course_path %>
 </div>

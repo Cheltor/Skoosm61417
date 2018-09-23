@@ -1,139 +1,75 @@
 <div class="container">
-  <h1 style="text-align:center; padding-top:20px; padding-bottom:20px"><%= @course.name %></h1>
-  <% if user_signed_in? %>
-    <% if @enrolls.blank? %>
-      <p>
-        <strong>Enroll</strong>
-        <td><%= button_to 'Enroll', enroll_course_path(@course), method: :post %></td>
-      </p>
-    <% else %>
-      <p>
-        <strong>UnEnroll</strong>
-        <%= link_to 'UnEnroll', @enroll, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>
-      </p>
-    <% end %>
-  <% end %>
+  <h1 style="text-align:center; padding-top:20px; padding-bottom:0px"><%= @course.name %></h1>
+</div>
 
-  <% if user_signed_in? %>
-    <strong><%= @signup.all.count %> enrolls</strong>
-    <% else %>
-    <strong><%= @enrolls.all.count %> enrolls</strong>
-  <% end %>
-
-  <% if @syllabuses.blank? %>
-    <h1>There are no Syllabi for this course yet.</h1>
-    <% else %>
-        
-      <h1>Listing Syllabuses</h1>
-      
-      <table>
-        <thead>
-          <tr>
-            <th>Year</th>
-            <th>Semester</th>
-            <th>Course</th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
-      
-        <tbody>
-          <% @syllabuses.each do |syllabus| %>
-            <tr>
-              <td><%= syllabus.year.year %></td>
-              <td><%= syllabus.semester.name %></td>
-              <td><%= syllabus.course.name %></td>
-              <td><%= link_to 'Show', syllabus %></td>
-              <td><%= link_to 'Edit', edit_syllabus_path(syllabus) %></td>
-              <td><%= link_to 'Destroy', syllabus, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            </tr>
+<div class="content">
+    <div class="row">
+      <div class="col-md-2">
+        <% if user_signed_in? %>
+        <div style="text-align:center">
+          <% if @enrolls.blank? %>
+            <%= button_to 'Enroll', enroll_course_path(@course), method: :post, :class => 'btn btn-primary btn-round' %>
+          <% else %>
+            <%= link_to 'UnEnroll', @enroll, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-round btn-danger' %>
           <% end %>
-        </tbody>
-      </table>
-  <% end %>
-
-  <% if @posts.blank? %>
-    <h1>There are no Posts for this course yet.</h1>
-    <% else %>
-        
-      <h1>Listing Posts</h1>
-      
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Url</th>
-            <th>Content</th>
-            <th>Course</th>
-            <th>Subject</th>
-            <th>User</th>
-            <th>User Karma</th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @posts.each do |post| %>
-            <tr>
-              <td><%= post.title %></td>
-              <td><%= post.url %></td>
-              <td><%= post.content %></td>
-              <td><%= post.course.name %></td>
-              <td><%= post.course.subject.name %></td>
-              <% if post.user.blank? %>
-                  <td>User Deleted</td>
-                  <td>N/A</td>
-                <% else %>
-                  <td><%= post.user.email %></td>
-                  <td><%= post.user.try(:karma) %></td>
-                  <td><%= link_to like_post_path(post), method: :put do %>upvote<% end %><%= post.get_upvotes.size %></td>
-                  <td><%= link_to dislike_post_path(post), method: :put do %>downvote<% end %><%= post.get_downvotes.size %></td>
-              <% end %>
-              <td><%= link_to 'Show', post, :class => 'btn btn-primary' %></td>
-            </tr>
+        </div>
+        <% end %>
+        <br>
+        <div style="text-align:center">
+          <% if @enrolls.all.count != 1 %>
+          <p>There are <%= @enrolls.all.count %> users signed up for this class.</p>
+          <% else %>
+          <p>There is <%= @enrolls.all.count %> user signed up for this class.</p>
           <% end %>
-        </tbody>
-      </table>
-  <% end %>
-
-  <%= link_to 'Edit', edit_course_path(@course) %> |
-  <%= link_to 'Back', courses_path %>
-
-      <h1>Listing Posts</h1>
-      
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Url</th>
-            <th>Content</th>
-            <th>Course</th>
-            <th>Subject</th>
-            <th>User</th>
-            <th>User Karma</th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @myposts.each do |post| %>
-            <tr>
-              <td><%= post.title %></td>
-              <td><%= post.url %></td>
-              <td><%= post.content %></td>
-              <td><%= post.course.name %></td>
-              <td><%= post.course.subject.name %></td>
-              <% if post.user.blank? %>
-                  <td>User Deleted</td>
-                  <td>N/A</td>
-                <% else %>
-                  <td><%= post.user.email %></td>
-                  <td><%= post.user.try(:karma) %></td>
-                  <td><%= link_to like_post_path(post), method: :put do %>upvote<% end %><%= post.get_upvotes.size %></td>
-                  <td><%= link_to dislike_post_path(post), method: :put do %>downvote<% end %><%= post.get_downvotes.size %></td>
-              <% end %>
-              <td><%= link_to 'Show', post %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+        </div>
+      </div>
+      <div class="col-md-10">
+        <div class="table-responsive">
+          <div class="container-fluid">
+        <!-- Posts -->
+        <% if @posts.blank? %>
+          <h1>There are no Posts for this course yet.</h1>
+          <% else %>
+          <h4 style="text-align:center"><%= @course.name %> Posts</h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th style="text-align: center">Title</th>
+                  <th style="text-align: center">Post Karma</th>
+                  <th style="text-align: center">User(karma)</th>
+                  <th style="text-align: center">Like</th>
+                  <th style="text-align: center">Dislike</th>
+                  <th style="text-align: center">Time created</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @posts.each do |post| %>
+                  <tr>
+                    <td style="text-align: center"><%= link_to 'Show', post, :class => 'btn btn-primary btn-round' %></td>
+                    <td style="text-align: center"><%= post.title %></td>
+                    <% if post.user.blank? %>
+                        <td style="text-align: center">N/A</td>
+                        <td style="text-align: center">User Deleted</td>
+                        <td style="text-align: center">N/A</td>
+                        <td style="text-align: center">N/A</td>
+                      <% else %>
+                        <td style="text-align: center"><%= post.get_upvotes.size %> - <%= post.get_downvotes.size %> = <%= post.weighted_score %> </td>
+                        <td style="text-align: center"><%= post.user.email %>(<%= post.user.try(:karma) %>)</td>
+                        <td class="td-actions text-center"><%= link_to like_post_path(post), method: :put do %>
+                          <span class="pe-7s-up-arrow" style="font-size: 20pt"></span><% end %></td>
+                        <td class="td-actions text-center"><%= link_to dislike_post_path(post), method: :put do %>
+                          <span class="pe-7s-bottom-arrow" style="font-size: 20pt"></span><% end %></td>
+                    <% end %>
+                    <td style="text-align: center"><%= time_ago_in_words(post.created_at) + " ago" %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+        <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

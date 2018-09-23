@@ -10,8 +10,8 @@
       <%= time_ago_in_words(@post.created_at) + " ago" %>
     </p>
     <% if @post.url.blank? %>
-    <p style="text-align:center">
     <% else %>
+    <p style="text-align:center">
       <%= link_to @post.url, @post.url, :target => "_blank" %>
     </p>
     <% end %>
@@ -38,11 +38,13 @@
 
     <div style="text-align:center">
       <% if @post.user == current_user %>
-      <td><%= link_to 'Edit', edit_post_path(@post), :class => 'btn btn-info btn-round btn-fill' %></td>
-      <td><%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger btn-round btn-fill' %></td>
+      <td><%= link_to 'Edit', edit_post_path(@post), :class => 'btn btn-info btn-round' %></td>
+      <td><%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger btn-round' %></td>
       <% end %>
-      <%= link_to 'Back', posts_path, :class => 'btn btn-default btn-round btn-fill' %>
-      <%= link_to 'Flag', flag_post_path(@post), method: :post, :class => 'btn btn-warning btn-round btn-fill' %>
+      <br>
+      <br>
+      <%= link_to 'Back', :back, :class => 'btn btn-default btn-round' %>
+      <%= link_to 'Flag', flag_post_path(@post), method: :post, :class => 'btn btn-warning btn-round' %>
     </div>
   </div>
  </div>
