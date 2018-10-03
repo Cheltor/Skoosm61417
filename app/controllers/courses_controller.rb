@@ -5,7 +5,7 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     @search = Course.ransack(params[:q])
-    @courses = @search.result.order("created_at DESC")
+    @courses = @search.result.order("created_at DESC").paginate(page: params[:page], per_page: 7)
   end
 
   # POST /enrolls
@@ -29,9 +29,9 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
-    @syllabuses = Syllabus.all.where(course_id: @course.id)
-    @posts = Post.all.where(course_id: @course.id).where.not(id: Flag.select(:post_id))
-    @myposts = Post.all.where(course_id: @course.id).where(user: current_user).where.not(id: Flag.select(:post_id))
+  #  @syllabuses = Syllabus.all.where(course_id: @course.id)
+    @posts = Post.all.where(course_id: @course.id).where.not(id: Flag.select(:post_id)).paginate(page: params[:page], per_page: 7)
+  #  @myposts = Post.all.where(course_id: @course.id).where(user: current_user).where.not(id: Flag.select(:post_id))
     if user_signed_in?
       @enrolls = Enroll.all.where(user_id: current_user.id).where(course_id: @course.id)
       @signup = Enroll.all.where(course_id: @course.id)

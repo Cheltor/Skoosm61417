@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'rewards/myrewards'
+
   get 'allbiz' => 'staticpages#allbiz'
 
   resources :rewards

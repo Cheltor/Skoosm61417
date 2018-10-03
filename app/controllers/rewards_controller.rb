@@ -6,7 +6,12 @@ class RewardsController < ApplicationController
   # GET /rewards
   # GET /rewards.json
   def index
-    @rewards = Reward.all
+    @rewards = Reward.all.paginate(page: params[:page], per_page: 7)
+  end
+
+  # GET /myrewards
+  def myrewards
+    @rewards = Reward.all.where(business: current_business).order("created_at DESC").paginate(page: params[:page], per_page: 7)
   end
 
   # GET /rewards/1

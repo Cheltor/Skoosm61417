@@ -2,101 +2,107 @@
   <div class="container" style="text-align:center; padding-top:; padding-bottom:">
     <h1>Dashboard</h1>
   </div>
-    <div class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-6">
-            <h4 class="title">My Courses</h2>
-            <% if @enrolls.blank? %>
-              <h5 style= "text-align:center">You haven't signed up for any courses yet.</h5>
-              <p style= "text-align:center"><%= link_to 'Courses', courses_path, class: "btn btn-primary btn-round btn-fill" %></p>
-            <% else %>
-            <% @enrolls.each do |enroll| %>
-              <div class="card container-fluid">
-                  <div class="header">
-                      <h4 class="title"><%= enroll.course.try(:name) %></h4>
-                      <p class="category"><div class="btn-group"><%= link_to 'Course Page', course_path(enroll.course), :class => 'btn btn-primary' %><%= link_to 'Unenroll', enroll, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></div></p>
-                  </div>
-                  <div class="content">
-                      <%= enroll.course.posts.count %> posts
-                      <%= enroll.course.enrolls.count %> enrolls
-                  </div>
-              </div>
-            <% end %>
-            <% end %>
-          </div>
-          <div class="col-md-6">
-            <div class="table-responsive">
-              <div class="container-fluid">
-                <h4 class="title">My Posts</h4>
-
-                  <% if @posts.blank? %>
-                  <h5 style= "text-align:center">You haven't made any posts yet.</h2>
-                  <p style= "text-align:center"><%= link_to 'New Post', new_post_path, class: "btn btn-primary btn-round btn-fill" %></p>
-                  <% else %>
-
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>Title</th>
-                      <th>Course</th>
-                      <th>Post Karma</th>
-                      <th>Time created</th>
-                      <th colspan="1"></th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    <% @myposts.each do |post| %>
-                      <tr>
-                        <td><%= post.title %></td>
-                        <td><%= post.course.name %></td>
-                        <td><%= post.get_upvotes.size %> - <%= post.get_downvotes.size %> = <%= post.weighted_score %> </td>
-                        <td><%= time_ago_in_words(post.created_at) + " ago" %></td>
-                        <td><%= link_to 'Show', post, :class => 'btn btn-primary btn-round' %></td>
-                      </tr>
-                    <% end %>
-                  </tbody>
-                </table>
-                <% end %>
-              </div>
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          <h4 class="title">My Courses</h2>
+          <% if @enrolls.blank? %>
+            <h5 style= "text-align:center">You haven't signed up for any courses yet.</h5>
+            <p style= "text-align:center"><%= link_to 'Courses', courses_path, class: "btn btn-primary btn-round btn-fill" %></p>
+          <% else %>
+          <% @enrolls.each do |enroll| %>
+            <div class="card container-fluid">
+                <div class="header">
+                    <h4 class="title"><%= enroll.course.try(:name) %></h4>
+                    <p class="category"><div class="btn-group"><%= link_to 'Course Page', course_path(enroll.course), :class => 'btn btn-primary' %><%= link_to 'Unenroll', enroll, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></div></p>
+                </div>
+                <div class="content">
+                    <%= enroll.course.posts.count %> posts
+                    <%= enroll.course.enrolls.count %> enrolls
+                </div>
             </div>
-            <div class="table-responsive">
-              <div class="container-fluid">
-                <h4 class="title">My Comments</h1>
-                <% if @comments.blank? %>
-                  <h5 style= "text-align:center">You haven't made any comments yet.</h5>
+          <% end %>
+          <% end %>
+        </div>
+        <div class="col-md-6">
+          <div class="table-responsive">
+            <div class="container-fluid">
+              <h4 class="title">My Posts</h4>
+
+                <% if @posts.blank? %>
+                <h5 style= "text-align:center">You haven't made any posts yet.</h2>
+                <p style= "text-align:center"><%= link_to 'New Post', new_post_path, class: "btn btn-primary btn-round btn-fill" %></p>
                 <% else %>
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>Post</th>
-                      <th>Content</th>
-                      <th>Comment Karma</th>
-                      <th>Time created</th>
-                      <th colspan="1"></th>
-                    </tr>
-                  </thead>
 
-                  <tbody>
-                    <% @mycomments.each do |comment| %>
-                      <tr>
-                        <td><%= comment.post.title %></td>
-                        <td><%= comment.content %></td>
-                        <td><%= comment.get_upvotes.size %> - <%= comment.get_downvotes.size %> = <%= comment.weighted_score %> </td>
-                        <td><%= time_ago_in_words(comment.created_at) + " ago" %></td>
-                        <td><%= link_to 'Show', comment.post, :class => 'btn btn-primary btn-round' %></td>
-                      </tr>
-                    <% end %>
-                  </tbody>
-                </table>
-                <% end %>
-              </div>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Course</th>
+                    <th>Post Karma</th>
+                    <th>Time created</th>
+                    <th colspan="1"></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% @myposts.each do |post| %>
+                    <tr>
+                      <td><%= post.title %></td>
+                      <td><%= post.course.name %></td>
+                      <td><%= post.get_upvotes.size %> - <%= post.get_downvotes.size %> = <%= post.weighted_score %> </td>
+                      <td><%= time_ago_in_words(post.created_at) + " ago" %></td>
+                      <td><%= link_to 'Show', post, :class => 'btn btn-primary btn-round' %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+              <% end %>
             </div>
+          </div>
+          <div style="text-align:center">
+            <%= will_paginate @myposts %>
+          </div>
+          <div class="table-responsive">
+            <div class="container-fluid">
+              <h4 class="title">My Comments</h1>
+              <% if @comments.blank? %>
+                <h5 style= "text-align:center">You haven't made any comments yet.</h5>
+              <% else %>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Post</th>
+                    <th>Content</th>
+                    <th>Comment Karma</th>
+                    <th>Time created</th>
+                    <th colspan="1"></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% @mycomments.each do |comment| %>
+                    <tr>
+                      <td><%= comment.post.title %></td>
+                      <td><%= comment.content %></td>
+                      <td><%= comment.get_upvotes.size %> - <%= comment.get_downvotes.size %> = <%= comment.weighted_score %> </td>
+                      <td><%= time_ago_in_words(comment.created_at) + " ago" %></td>
+                      <td><%= link_to 'Show', comment.post, :class => 'btn btn-primary btn-round' %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+              <% end %>
+            </div>
+          </div>
+          <div style="text-align:center">
+            <%= will_paginate @mycomments %>
           </div>
         </div>
       </div>
     </div>
+  </div>
   <% elsif business_signed_in? %>
   <div class="container">
     <div class="row">
@@ -109,6 +115,8 @@
           <br><br>
           <%= link_to 'New Reward', new_reward_path, :class => "btn btn-round btn-primary btn-fill" %>
         </div>
+        <br>
+
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -128,35 +136,43 @@
         </div>
       </div>
       <div class="col-md-8">
-        <h4>Our Rewards</h4>
-        <% if @rewards.blank? %>
-          <h5>You have not created any rewards yet</h5>
-        <% else %>
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Cost</th>
-                <th>Description</th>
-                <th>Time created</th>
-                <th colspan="1"></th>
-              </tr>
-            </thead>
+        <div class="table-responsive">
+          <div class="container-fluid">
+            <h4 style="text-align:center">Our Rewards</h4>
+            <% if @rewards.blank? %>
+              <h5>You have not created any rewards yet</h5>
+            <% else %>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Cost</th>
+                    <th>Description</th>
+                    <th>Time created</th>
+                    <th colspan="1"></th>
+                  </tr>
+                </thead>
 
-            <tbody>
-              <% @myrewards.each do |reward| %>
-                <tr>
-                  <td><%= reward.name %></td>
-                  <td><%= reward.cost %></td>
-                  <td><%= reward.description %></td>
-                  <td><%= time_ago_in_words(reward.created_at) + " ago" %></td>
-                  <td><%= link_to 'Show', reward, :class => 'btn btn-primary btn-round' %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        <% end %>
+                <tbody>
+                  <% @myrewards.each do |reward| %>
+                    <tr>
+                      <td><%= reward.name %></td>
+                      <td><%= reward.cost %></td>
+                      <td><%= reward.description %></td>
+                      <td><%= time_ago_in_words(reward.created_at) + " ago" %></td>
+                      <td><%= link_to 'Show', reward, :class => 'btn btn-primary btn-round' %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            <% end %>
+          </div>
+        </div>
+        <div style="text-align:center">
+        <%= link_to 'All my rewards', rewards_myrewards_path, class: "btn btn-primary btn-round" %>
+        </div>
       </div>
+
     </div>
   </div>
   <% else %>

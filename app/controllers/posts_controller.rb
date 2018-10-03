@@ -6,14 +6,14 @@ class PostsController < ApplicationController
   # GET /myposts
   # GET /myposts.json
   def myposts
-    @posts = Post.all.where(user: current_user).order("created_at DESC")
+    @posts = Post.all.where(user: current_user).order("created_at DESC").paginate(page: params[:page], per_page: 7)
   end
   
   # GET /posts
   # GET /posts.json
   def index
     @search = Post.ransack(params[:q])
-    @posts = @search.result.includes(:comments).where.not(id: Flag.select(:post_id)).order("created_at DESC")
+    @posts = @search.result.highest_voted.includes(:comments).where.not(id: Flag.select(:post_id)).paginate(page: params[:page], per_page: 7)
   end
 
   # GET /posts/1

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180919131219) do
+ActiveRecord::Schema.define(version: 20180924001241) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,10 +108,18 @@ ActiveRecord::Schema.define(version: 20180919131219) do
     t.string   "title"
     t.string   "url"
     t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "course_id"
     t.integer  "user_id"
+    t.integer  "cached_votes_total", default: 0
+    t.integer  "cached_votes_score", default: 0
+    t.integer  "cached_votes_up",    default: 0
+    t.integer  "cached_votes_down",  default: 0
+    t.index ["cached_votes_down"], name: "index_posts_on_cached_votes_down", using: :btree
+    t.index ["cached_votes_score"], name: "index_posts_on_cached_votes_score", using: :btree
+    t.index ["cached_votes_total"], name: "index_posts_on_cached_votes_total", using: :btree
+    t.index ["cached_votes_up"], name: "index_posts_on_cached_votes_up", using: :btree
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
   end
 
