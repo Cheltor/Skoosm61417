@@ -22,7 +22,7 @@
       <% @rewards.each do |reward| %>
         <tr>
           <td style="text-align: center"><%= link_to 'Show', reward, :class => 'btn btn-primary btn-round' %></td>
-          <td style="text-align: center"><%= reward.business.email %></td>
+          <td style="text-align: center"><%= reward.business.name %></td>
           <td style="text-align: center"><%= reward.name %></td>
           <td style="text-align: center"><%= reward.cost %> Points</td>
         </tr>
